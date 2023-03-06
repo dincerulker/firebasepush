@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import firebase from 'firebase/app';
 import 'firebase/database';
 
@@ -27,9 +27,6 @@ function App() {
   const [plug_kind, setPlugKind] = useState('');
   const [plug_type1, setPlugType1] = useState('');
   const [plug_type2, setPlugType2] = useState('');
-  const [plug_type3, setPlugType3] = useState('');
-  const [plug_type4, setPlugType4] = useState('');
-  const [plug_type5, setPlugType5] = useState('');
   const [station_address, setStationAdress] = useState('');
   const [station_id, setStationId] = useState('');
   const [station_name, setStationName] = useState('');
@@ -43,34 +40,10 @@ function App() {
       plug_kind: plug_kind,
       plug_type1: plug_type1,
       plug_type2: plug_type2,
-      plug_type3: plug_type3,
-      plug_type4: plug_type4,
-      plug_type5: plug_type5,
       station_address: station_address,
       station_id: station_id,
       station_name: station_name,
     };
-
-    if (plug_type1 === "") {
-      data.plug_type1 = null;
-    }
-
-    if (plug_type2 === "") {
-      data.plug_type2 = null
-    }
-
-    if (plug_type3 === "") {
-      data.plug_type3 = null
-    }
-
-    if (plug_type4 === "") {
-      data.plug_type4 = null
-    }
-
-    if (plug_type5 === "") {
-      data.plug_type5 = null
-    }
-
     const locationsRef = db.ref('locations');
     locationsRef.limitToLast(1).once('child_added', (snapshot) => {
       // Son verinin değerini al
@@ -91,9 +64,6 @@ function App() {
     setPlugKind('');
     setPlugType1('');
     setPlugType2('');
-    setPlugType3('');
-    setPlugType4('');
-    setPlugType5('');
     setStationAdress('');
     setStationId('');
     setStationName('');
@@ -130,21 +100,6 @@ function App() {
         <label>
           Plug Type 2:
           <input type="text" value={plug_type2} onChange={(e) => setPlugType2(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Plug Type 3:
-          <input type="text" value={plug_type3} onChange={(e) => setPlugType3(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Plug Type 4:
-          <input type="text" value={plug_type4} onChange={(e) => setPlugType4(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Plug Type 5:
-          <input type="text" value={plug_type5} onChange={(e) => setPlugType5(e.target.value)} />
         </label>
         <br />
         <label>
