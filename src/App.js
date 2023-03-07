@@ -87,6 +87,7 @@ function App() {
 
   return (
     <div>
+    <h3>Firebase New Data Send</h3>
       <form onSubmit={handleSubmit}>
         <label>
           Latitude:
@@ -130,7 +131,7 @@ function App() {
               <option value="Three Phase">Three Phase</option>
             </select>
           ))}
-          <button type="button" onClick={addPlugTypeInput}>Add Plug Type</button>
+          <button type="button" onClick={addPlugTypeInput}>+ Add Plug Type +</button>
         </label>
         <br />
         <label>
@@ -147,7 +148,7 @@ function App() {
           Station Name:
           <input type="text" value={station_name} onChange={(e) => setStationName(e.target.value)} required />
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit">Gönder</button>
       </form>
     </div>
   );
