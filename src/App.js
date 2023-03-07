@@ -90,30 +90,30 @@ function App() {
       <form onSubmit={handleSubmit}>
         <label>
           Latitude:
-          <input type="text" value={latitude} onChange={(e) => setLatitude(e.target.value)} />
+          <input type="text" value={latitude} onChange={(e) => setLatitude(e.target.value)} required />
           <p>99.999999 Şeklinde giriniz</p>
         </label>
         <br />
         <label>
           Longitude:
-          <input type="text" value={longitude} onChange={(e) => setLongitude(e.target.value)} />
+          <input type="text" value={longitude} onChange={(e) => setLongitude(e.target.value)} required/>
           <p>99.999999 Şeklinde giriniz</p>
         </label>
         <br />
         <label>
           Plug Amount:
-          <input type="text" value={plug_amount} onChange={(e) => setPlugAmount(e.target.value)} />
+          <input type="text" value={plug_amount} onChange={(e) => setPlugAmount(e.target.value)} required/>
         </label>
         <br />
         <label>
           Plug Kind:
-          <input type="text" value={plug_kind} onChange={(e) => setPlugKind(e.target.value)} />
+          <input type="text" value={plug_kind} onChange={(e) => setPlugKind(e.target.value)} required/>
         </label>
         <br />
         <label>
           Plug Types:
-          <select value={plug_types[0]} onChange={(e) => handlePlugTypeChange(0, e.target.value)}>
-            <option value="" selected>Tipi Seçiniz</option>
+          <select value={plug_types[0]} onChange={(e) => handlePlugTypeChange(0, e.target.value)} required>
+            <option value="" selected>plug_type1</option>
             <option value="Type 2">Type 2</option>
             <option value="CHAdeMO">CHAdeMO</option>
             <option value="CCS/SAE">CCS/SAE</option>
@@ -122,7 +122,7 @@ function App() {
           </select>
           {plug_types.slice(1).map((value, index) => (
             <select key={index + 1} value={value} onChange={(e) => handlePlugTypeChange(index + 1, e.target.value)}>
-              <option value="" selected>Tipi Seçiniz</option>
+              <option value="" selected>{`plug_type${index + 2}`}</option>
               <option value="Type 2">Type 2</option>
               <option value="CHAdeMO">CHAdeMO</option>
               <option value="CCS/SAE">CCS/SAE</option>
@@ -135,17 +135,17 @@ function App() {
         <br />
         <label>
           Station Adress:
-          <input type="text" value={station_address} onChange={(e) => setStationAdress(e.target.value)} />
+          <input type="text" value={station_address} onChange={(e) => setStationAdress(e.target.value)} required/>
         </label>
         <br />
         <label>
           Station Id:
-          <input type="text" value={station_id} onChange={(e) => setStationId(e.target.value)} />
+          <input type="text" value={station_id} onChange={(e) => setStationId(e.target.value)} required/>
         </label>
         <br />
         <label>
           Station Name:
-          <input type="text" value={station_name} onChange={(e) => setStationName(e.target.value)} />
+          <input type="text" value={station_name} onChange={(e) => setStationName(e.target.value)} required />
         </label>
         <button type="submit">Submit</button>
       </form>
