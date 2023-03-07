@@ -25,51 +25,28 @@ function App() {
   const [longitude, setLongitude] = useState('');
   const [plug_amount, setPlugAmount] = useState('');
   const [plug_kind, setPlugKind] = useState('');
-  const [plug_type1, setPlugType1] = useState('');
-  const [plug_type2, setPlugType2] = useState('');
-  const [plug_type3, setPlugType3] = useState('');
-  const [plug_type4, setPlugType4] = useState('');
-  const [plug_type5, setPlugType5] = useState('');
+  const [plug_types, setPlugTypes] = useState([]);
   const [station_address, setStationAdress] = useState('');
   const [station_id, setStationId] = useState('');
   const [station_name, setStationName] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const plugTypesObject = plug_types.reduce((obj, value, index) => {
+      obj[`plug_type_${index + 1}`] = value;
+      return obj;
+    }, {});
+    
     const data = {
       latitude: latitude,
       longitude: longitude,
       plug_amount: plug_amount,
       plug_kind: plug_kind,
-      plug_type1: plug_type1,
-      plug_type2: plug_type2,
-      plug_type3: plug_type3,
-      plug_type4: plug_type4,
-      plug_type5: plug_type5,
+      plug_types: plugTypesObject,
       station_address: station_address,
       station_id: station_id,
       station_name: station_name,
     };
-
-    if (plug_type1 === "") {
-      data.plug_type1 = null;
-    }
-
-    if (plug_type2 === "") {
-      data.plug_type2 = null
-    }
-
-    if (plug_type3 === "") {
-      data.plug_type3 = null
-    }
-
-    if (plug_type4 === "") {
-      data.plug_type4 = null
-    }
-
-    if (plug_type5 === "") {
-      data.plug_type5 = null
-    }
 
     const locationsRef = db.ref('locations');
     locationsRef.limitToLast(1).once('child_added', (snapshot) => {
@@ -89,15 +66,24 @@ function App() {
     setLongitude('');
     setPlugAmount('');
     setPlugKind('');
-    setPlugType1('');
-    setPlugType2('');
-    setPlugType3('');
-    setPlugType4('');
-    setPlugType5('');
+    setPlugTypes([]);
     setStationAdress('');
     setStationId('');
     setStationName('');
+    handlePlugTypeChange("");
   };
+  const addPlugTypeInput = () => {
+    setPlugTypes(prevState => [...prevState, ""]);
+  };
+  
+  const handlePlugTypeChange = (index, value) => {
+    setPlugTypes(prevState => {
+      const newState = [...prevState];
+      newState[index] = value;
+      return newState;
+    });
+  };
+  
 
   return (
     <div>
@@ -105,11 +91,13 @@ function App() {
         <label>
           Latitude:
           <input type="text" value={latitude} onChange={(e) => setLatitude(e.target.value)} />
+          <p>99.999999 Şeklinde giriniz</p>
         </label>
         <br />
         <label>
           Longitude:
           <input type="text" value={longitude} onChange={(e) => setLongitude(e.target.value)} />
+          <p>99.999999 Şeklinde giriniz</p>
         </label>
         <br />
         <label>
@@ -123,28 +111,26 @@ function App() {
         </label>
         <br />
         <label>
-          Plug Type 1:
-          <input type="text" value={plug_type1} onChange={(e) => setPlugType1(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Plug Type 2:
-          <input type="text" value={plug_type2} onChange={(e) => setPlugType2(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Plug Type 3:
-          <input type="text" value={plug_type3} onChange={(e) => setPlugType3(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Plug Type 4:
-          <input type="text" value={plug_type4} onChange={(e) => setPlugType4(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Plug Type 5:
-          <input type="text" value={plug_type5} onChange={(e) => setPlugType5(e.target.value)} />
+          Plug Types:
+          <select value={plug_types[0]} onChange={(e) => handlePlugTypeChange(0, e.target.value)}>
+            <option value="" selected>Tipi Seçiniz</option>
+            <option value="Type 2">Type 2</option>
+            <option value="CHAdeMO">CHAdeMO</option>
+            <option value="CCS/SAE">CCS/SAE</option>
+            <option value="Wall">Wall (Euro)</option>
+            <option value="Three Phase">Three Phase</option>
+          </select>
+          {plug_types.slice(1).map((value, index) => (
+            <select key={index + 1} value={value} onChange={(e) => handlePlugTypeChange(index + 1, e.target.value)}>
+              <option value="" selected>Tipi Seçiniz</option>
+              <option value="Type 2">Type 2</option>
+              <option value="CHAdeMO">CHAdeMO</option>
+              <option value="CCS/SAE">CCS/SAE</option>
+              <option value="Wall">Wall (Euro)</option>
+              <option value="Three Phase">Three Phase</option>
+            </select>
+          ))}
+          <button type="button" onClick={addPlugTypeInput}>Add Plug Type</button>
         </label>
         <br />
         <label>
