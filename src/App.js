@@ -33,7 +33,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const plugTypesObject = plug_types.reduce((obj, value, index) => {
-      obj[`plug_type_${index + 1}`] = value;
+      obj[`plug_type${index + 1}`] = value;
       return obj;
     }, {});
     
@@ -114,7 +114,7 @@ function App() {
         <label>
           Plug Types:
           <select value={plug_types[0]} onChange={(e) => handlePlugTypeChange(0, e.target.value)} required>
-            <option value="" selected>plug_type1</option>
+            <option value="" selected>plug_type1 seçiniz</option>
             <option value="Type 2">Type 2</option>
             <option value="CHAdeMO">CHAdeMO</option>
             <option value="CCS/SAE">CCS/SAE</option>
@@ -123,7 +123,7 @@ function App() {
           </select>
           {plug_types.slice(1).map((value, index) => (
             <select key={index + 1} value={value} onChange={(e) => handlePlugTypeChange(index + 1, e.target.value)}>
-              <option value="" selected>{`plug_type${index + 2}`}</option>
+              <option value="" selected>{`plug_type${index + 2}`} seçiniz</option>
               <option value="Type 2">Type 2</option>
               <option value="CHAdeMO">CHAdeMO</option>
               <option value="CCS/SAE">CCS/SAE</option>
