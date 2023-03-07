@@ -37,14 +37,15 @@ function App() {
       return obj;
     }, {});
     
+    
     const data = {
-      latitude: latitude,
-      longitude: longitude,
-      plug_amount: plug_amount,
-      plug_kind: plug_kind,
+      latitude: parseFloat(latitude), 
+      longitude: parseFloat(longitude),
+      plug_amount: parseInt(plug_amount),
+      plug_kind: parseInt(plug_kind),
       plug_types: plugTypesObject,
       station_address: station_address,
-      station_id: station_id,
+      station_id: parseInt(station_id),
       station_name: station_name,
     };
 
