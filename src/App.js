@@ -157,6 +157,7 @@ function App() {
           Station Brand:
           <input type="text" value={station_brands} onChange={(e) => setStationBrands(e.target.value)} required />
         </label>
+        <p>İstasyon görselinin görünebilmesi için istasyon ismi ile görsel dosya adı aynı olmalıdır.</p>
         <button type="submit">Gönder</button>
       </form>
     </div>
