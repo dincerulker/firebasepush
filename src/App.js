@@ -29,11 +29,12 @@ function App() {
   const [station_address, setStationAdress] = useState('');
   const [station_id, setStationId] = useState('');
   const [station_name, setStationName] = useState('');
+  const [station_brands, setStationBrands] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const plugTypesObject = plug_types.reduce((obj, value, index) => {
-      obj[`plug_type${index + 1}`] = value;
+      obj[`plug_type_${index + 1}`] = value;
       return obj;
     }, {});
     
@@ -47,6 +48,7 @@ function App() {
       station_address: station_address,
       station_id: parseInt(station_id),
       station_name: station_name,
+      station_brands: station_brands,
     };
 
     const locationsRef = db.ref('locations');
@@ -72,6 +74,7 @@ function App() {
     setStationId('');
     setStationName('');
     handlePlugTypeChange("");
+    setStationBrands("");
   };
   const addPlugTypeInput = () => {
     setPlugTypes(prevState => [...prevState, ""]);
@@ -115,7 +118,7 @@ function App() {
         <label>
           Plug Types:
           <select value={plug_types[0]} onChange={(e) => handlePlugTypeChange(0, e.target.value)} required>
-            <option value="" selected>plug_type1 seçiniz</option>
+            <option value="" selected>plug_type_1 seçiniz</option>
             <option value="Type 2">Type 2</option>
             <option value="CHAdeMO">CHAdeMO</option>
             <option value="CCS/SAE">CCS/SAE</option>
@@ -124,7 +127,7 @@ function App() {
           </select>
           {plug_types.slice(1).map((value, index) => (
             <select key={index + 1} value={value} onChange={(e) => handlePlugTypeChange(index + 1, e.target.value)}>
-              <option value="" selected>{`plug_type${index + 2}`} seçiniz</option>
+              <option value="" selected>{`plug_type_${index + 2}`} seçiniz</option>
               <option value="Type 2">Type 2</option>
               <option value="CHAdeMO">CHAdeMO</option>
               <option value="CCS/SAE">CCS/SAE</option>
@@ -148,6 +151,11 @@ function App() {
         <label>
           Station Name:
           <input type="text" value={station_name} onChange={(e) => setStationName(e.target.value)} required />
+        </label>
+        <br />
+        <label>
+          Station Brand:
+          <input type="text" value={station_brands} onChange={(e) => setStationBrands(e.target.value)} required />
         </label>
         <button type="submit">Gönder</button>
       </form>
