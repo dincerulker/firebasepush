@@ -4,13 +4,14 @@ import 'firebase/database';
 
 // Firebase yapılandırması
 const firebaseConfig = {
-  apiKey: "AIzaSyDQVdxdIsABShrpHEy7tncNwO2P4uKNqkI",
-  authDomain: "ev-test-5fa23.firebaseapp.com",
-  databaseURL: "https://ev-test-5fa23-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "ev-test-5fa23",
-  storageBucket: "ev-test-5fa23.appspot.com",
-  messagingSenderId: "894259655254",
-  appId: "1:894259655254:web:bb089d85194747f4ea81f7",
+  apiKey: "AIzaSyBEmPk4NbjJjfeBvKTaxsk-z4NzfbzyYVA",
+  authDomain: "chargia-7b3a6.firebaseapp.com",
+  databaseURL: "https://chargia-7b3a6-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "chargia-7b3a6",
+  storageBucket: "chargia-7b3a6.appspot.com",
+  messagingSenderId: "444393840428",
+  appId: "1:444393840428:web:8b3167d5a57ca113d59689",
+  measurementId: "G-J7BH1EQRXG"
 };
 
 // Firebase uygulaması başlatma
@@ -28,7 +29,7 @@ function App() {
   const [plug_types, setPlugTypes] = useState([]);
   const [station_address, setStationAdress] = useState('');
   const [station_id, setStationId] = useState('');
-  const [station_name, setStationName] = useState('');
+  const [stations_name, setStationName] = useState('');
   const [station_brands, setStationBrands] = useState('');
 
   const handleSubmit = (e) => {
@@ -47,7 +48,7 @@ function App() {
       plug_types: plugTypesObject,
       station_address: station_address,
       station_id: parseInt(station_id),
-      station_name: station_name,
+      stations_name: stations_name,
       station_brands: station_brands,
     };
 
@@ -150,7 +151,7 @@ function App() {
         <br />
         <label>
           Station Name:
-          <input type="text" value={station_name} onChange={(e) => setStationName(e.target.value)} required />
+          <input type="text" value={stations_name} onChange={(e) => setStationName(e.target.value)} required />
         </label>
         <br />
         <label>
