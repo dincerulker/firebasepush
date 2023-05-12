@@ -159,6 +159,8 @@ function App() {
           <input type="text" value={station_brands} onChange={(e) => setStationBrands(e.target.value)} required />
         </label>
         <p>İstasyon görselinin görünebilmesi için istasyon ismi ile görsel dosya adı aynı olmalıdır.</p>
+        <p>"aksa","armatec","beefull", "bisarjet", "bluedot","chargee","cvcharging","enspire","enyakit","epower","esarj","evbox","gcharger","oncharge",
+          "powersarj","renault","rhg","sarjon", "sharz","skywell", "tesla","viaenerji","voltrun","wallbox","zes","gio","nobrand"</p>
         <button type="submit">Gönder</button>
       </form>
     </div>
